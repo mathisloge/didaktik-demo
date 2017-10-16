@@ -1,0 +1,30 @@
+{
+  "name": "didaktik-demo",
+  "version": "1.0.0",
+  "description": "Demos für die Präsentation in Informatik Didaktik im WS17/18",
+  "main": "build/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "http-server",
+    "build": "tsc && browserify build/main.js -o dist/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mathisloge/didaktik-demo.git"
+  },
+  "author": "Mathis Logemann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mathisloge/didaktik-demo/issues"
+  },
+  "homepage": "https://github.com/mathisloge/didaktik-demo#readme",
+  "devDependencies": {
+    "@types/prismjs": "^1.6.4",
+    "browserify": "^14.4.0",
+    "http-server": "^0.10.0",
+    "typescript": "^2.5.3"
+  },
+  "dependencies": {
+    "prismjs": "^1.8.1"
+  }
+}
