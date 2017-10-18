@@ -1,0 +1,6 @@
+[
+    {"matnr":501648, "name": "Max", "nachname": "Schmidt"},
+    {"matnr":468135, "name": "Eva", "nachname": "Müller"},
+    {"matnr":879133, "name": "Lisa", "nachname": "Mustermann"},
+    {"matnr":706648, "name": "Jonas", "nachname": "Westermann"}
+]

@@ -60,6 +60,21 @@ exports.default = start;
 },{}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+function start() {
+    let container = document.getElementById("demo-container");
+    let element = document.createElement("div");
+    element.innerText = "Ich bin das Demoelement!";
+    element.style.border = "1px solid"; //Um den Breich für die Maus sichtbar zu machen.
+    container.appendChild(element);
+    element.addEventListener("mouseenter", (event) => element.style.color = "#6495ED");
+    element.addEventListener("mouseout", (event) => element.style.color = "#000");
+    element.addEventListener("click", (event) => element.innerText = "Klick :)");
+}
+exports.default = start;
+
+},{}],5:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 function changeHtml() {
     let el = document.getElementById("demo-container");
     el.innerHTML = "<p>Ich bin normal. <b>Ich bin fett gedruckt.</b></p>";
@@ -74,7 +89,7 @@ function changeStyle() {
 }
 exports.changeStyle = changeStyle;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function start() {
@@ -111,7 +126,39 @@ class Student {
     }
 }
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function start() {
+    let promiseStudenten = getJson("/build/json/demo.json");
+    promiseStudenten.then((studenten) => {
+        console.log(studenten);
+    }).catch((error) => {
+        console.error(error);
+    });
+    let directTimeout = setTimeout(() => {
+        return 99;
+    }, 500);
+    console.log("Timeout-Zuweisung: ", directTimeout); // ID des Timeouts
+    let timeout = new Promise((resolve, reject) => setTimeout(() => resolve(99), 500));
+    timeout.then(number => console.log("Timeout-Promise: ", number));
+}
+exports.default = start;
+function getJson(file) {
+    return new Promise((resolve, reject) => {
+        var rawFile = new XMLHttpRequest();
+        rawFile.open("GET", file, true);
+        rawFile.onload = () => {
+            if (rawFile.readyState == 4 && (rawFile.status == 200 || rawFile.status == 0))
+                resolve(JSON.parse(rawFile.responseText)); //Erfolgreich
+            else
+                reject("Datei konnte nicht geladen werden"); //Gescheitert
+        };
+        rawFile.send(null);
+    });
+}
+
+},{}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const prismjs_1 = require("prismjs");
@@ -121,6 +168,8 @@ const functions_1 = require("./class/functions");
 const manipulation_1 = require("./dom/manipulation");
 const generic_1 = require("./ts/generic");
 const basic_1 = require("./json/basic");
+const promise_1 = require("./json/promise");
+const events_1 = require("./dom/events");
 class Main {
     constructor() {
         this.handleBtnClick = (event) => {
@@ -186,13 +235,19 @@ class Main {
             case "json-basic":
                 basic_1.default();
                 break;
+            case "promise":
+                promise_1.default();
+                break;
+            case "events":
+                events_1.default();
+                break;
             default: console.error("Can´t find Function!");
         }
     }
 }
 new Main();
 
-},{"./class/constructor":1,"./class/functions":2,"./class/polymorphism":3,"./dom/manipulation":4,"./json/basic":5,"./ts/generic":7,"prismjs":8}],7:[function(require,module,exports){
+},{"./class/constructor":1,"./class/functions":2,"./class/polymorphism":3,"./dom/events":4,"./dom/manipulation":5,"./json/basic":6,"./json/promise":7,"./ts/generic":9,"prismjs":10}],9:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function start() {
@@ -226,7 +281,7 @@ class Base {
     }
 }
 
-},{}],8:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 (function (global){
 
 /* **********************************************
@@ -1049,4 +1104,4 @@ Prism.languages.js = Prism.languages.javascript;
 })();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[6]);
+},{}]},{},[8]);

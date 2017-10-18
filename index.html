@@ -13,10 +13,17 @@
             min-height: 70%;
         }
         .main {
-            margin: 100px auto;
+            margin: 0 auto;
             height: 100%;
             background-color: white;
             padding: 20px;
+        }
+        #code-container {
+            font-size: larger !important;
+        }
+        #demo-container{
+            font-size: larger !important;
+            margin-top: 10px;
         }
     </style>
 <body>
@@ -38,7 +45,7 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a href="javascript:void(0)">Events</a>
+                <a href="javascript:void(0)" class="btn-demo" data-file="dom/events.js" data-func="events">Events</a>
             </li>
             <li class="nav-item active">
                 <a href="javascript:void(0)">DOM-Interaktion</a>
@@ -55,7 +62,8 @@
                 <a href="javascript:void(0)" class="btn-demo" data-file="json/basic.js" data-func="json-basic">JSON</a>
             </li>
             <li class="nav-item">
-                <a href="javascript:void(0)">Promise</a>
+                <a href="javascript:void(0)" class="btn-demo" data-file="json/promise.js" data-func="promise">Promise</a>
+                <a href="javascript:void(0)" class="btn-demo" data-file="json/demo.json">Promise-Datei</a>
             </li>
             <li class="nav-item active">
                 <a href="javascript:void(0)">Typescript</a>

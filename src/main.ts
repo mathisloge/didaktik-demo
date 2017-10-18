@@ -6,6 +6,8 @@ import Func from './class/functions';
 import { changeHtml, changeStyle} from './dom/manipulation';
 import generic from './ts/generic';
 import jsonBasic from './json/basic';
+import promise from './json/promise';
+import events from './dom/events';
 
 class Main {
     container:HTMLDivElement;
@@ -70,6 +72,8 @@ class Main {
             case "func": new Func(); break;
             case "ts-generic-ts": generic(); break;
             case "json-basic": jsonBasic(); break;
+            case "promise": promise(); break;
+            case "events": events(); break;
             default: console.error("Can´t find Function!");
         }
     }

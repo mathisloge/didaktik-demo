@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "http-server",
-    "build": "tsc && browserify build/main.js -o dist/bundle.js"
+    "build": "tsc && browserify build/main.js -o dist/bundle.js && npm run copy",
+    "copy": "copyfiles -f src/json/demo.json build/json"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@types/prismjs": "^1.6.4",
     "browserify": "^14.4.0",
+    "copyfiles": "^1.2.0",
     "http-server": "^0.10.0",
     "typescript": "^2.5.3"
   },
