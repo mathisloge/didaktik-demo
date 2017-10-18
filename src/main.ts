@@ -5,6 +5,7 @@ import Const from './class/constructor';
 import Func from './class/functions';
 import { changeHtml, changeStyle} from './dom/manipulation';
 import generic from './ts/generic';
+import jsonBasic from './json/basic';
 
 class Main {
     container:HTMLDivElement;
@@ -68,6 +69,7 @@ class Main {
             case "dom-style": changeStyle(); break;
             case "func": new Func(); break;
             case "ts-generic-ts": generic(); break;
+            case "json-basic": jsonBasic(); break;
             default: console.error("Can´t find Function!");
         }
     }

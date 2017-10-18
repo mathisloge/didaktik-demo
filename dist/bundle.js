@@ -77,12 +77,50 @@ exports.changeStyle = changeStyle;
 },{}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+function start() {
+    {
+        let jsonString = '{"matnr":207470, "name": "Max", "nachname": "Mustermann"}';
+        console.log("jsonString: ", jsonString);
+        let student = JSON.parse(jsonString);
+        console.log("Student: ", student);
+        student.straße = "Albrechtstraße 30";
+        console.log("Student: ", student);
+        jsonString = JSON.stringify(student);
+        console.log("stringify: ", jsonString);
+    }
+    {
+        let student = new Student();
+        console.log("Student Klasse: ", student);
+        let json = JSON.stringify(student);
+        console.log("Student Klasse stringify", json);
+    }
+}
+exports.default = start;
+class Student {
+    constructor() {
+        this.fatDummyFunction = () => {
+            console.log("just a dummy :) ");
+        };
+        this.matNr = 7985612;
+        this.name = "Eva";
+        this.nachname = "Mustermann";
+        this.straße = "Sedanstraße 44";
+    }
+    dummyFunction() {
+        console.log("just a dummy :) ");
+    }
+}
+
+},{}],6:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const prismjs_1 = require("prismjs");
 const polymorphism_1 = require("./class/polymorphism");
 const constructor_1 = require("./class/constructor");
 const functions_1 = require("./class/functions");
 const manipulation_1 = require("./dom/manipulation");
 const generic_1 = require("./ts/generic");
+const basic_1 = require("./json/basic");
 class Main {
     constructor() {
         this.handleBtnClick = (event) => {
@@ -145,13 +183,16 @@ class Main {
             case "ts-generic-ts":
                 generic_1.default();
                 break;
+            case "json-basic":
+                basic_1.default();
+                break;
             default: console.error("Can´t find Function!");
         }
     }
 }
 new Main();
 
-},{"./class/constructor":1,"./class/functions":2,"./class/polymorphism":3,"./dom/manipulation":4,"./ts/generic":6,"prismjs":7}],6:[function(require,module,exports){
+},{"./class/constructor":1,"./class/functions":2,"./class/polymorphism":3,"./dom/manipulation":4,"./json/basic":5,"./ts/generic":7,"prismjs":8}],7:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function start() {
@@ -185,7 +226,7 @@ class Base {
     }
 }
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 (function (global){
 
 /* **********************************************
@@ -1008,4 +1049,4 @@ Prism.languages.js = Prism.languages.javascript;
 })();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[5]);
+},{}]},{},[6]);

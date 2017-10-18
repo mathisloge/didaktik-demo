@@ -6,6 +6,7 @@ const constructor_1 = require("./class/constructor");
 const functions_1 = require("./class/functions");
 const manipulation_1 = require("./dom/manipulation");
 const generic_1 = require("./ts/generic");
+const basic_1 = require("./json/basic");
 class Main {
     constructor() {
         this.handleBtnClick = (event) => {
@@ -67,6 +68,9 @@ class Main {
                 break;
             case "ts-generic-ts":
                 generic_1.default();
+                break;
+            case "json-basic":
+                basic_1.default();
                 break;
             default: console.error("Can´t find Function!");
         }
