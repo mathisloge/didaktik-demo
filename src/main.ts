@@ -2,6 +2,7 @@ import { languages, highlight } from 'prismjs';
 
 import poly from './class/polymorphism';
 import Const from './class/constructor';
+import Func from './class/functions';
 import { changeHtml, changeStyle} from './dom/manipulation';
 
 class Main {
@@ -64,6 +65,7 @@ class Main {
             case "constructor": new Const(); break;
             case "dom-mani": changeHtml(); break;
             case "dom-style": changeStyle(); break;
+            case "func": new Func(); break;
             default: console.error("Can´t find Function!");
         }
     }

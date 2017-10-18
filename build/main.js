@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const prismjs_1 = require("prismjs");
 const polymorphism_1 = require("./class/polymorphism");
 const constructor_1 = require("./class/constructor");
+const functions_1 = require("./class/functions");
 const manipulation_1 = require("./dom/manipulation");
 class Main {
     constructor() {
@@ -59,6 +60,9 @@ class Main {
                 break;
             case "dom-style":
                 manipulation_1.changeStyle();
+                break;
+            case "func":
+                new functions_1.default();
                 break;
             default: console.error("Can´t find Function!");
         }

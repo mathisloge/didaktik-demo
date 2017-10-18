@@ -11,6 +11,24 @@ exports.default = Base;
 },{}],2:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+class BaseClass {
+    constructor() {
+        this.fatPointerFunction = () => {
+            console.log("fat: ", this);
+        };
+        let btn = document.getElementById("btn-demo");
+        btn.addEventListener("click", this.fatPointerFunction);
+        btn.addEventListener("click", this.normalFunction);
+    }
+    normalFunction() {
+        console.log("normal: ", this);
+    }
+}
+exports.default = BaseClass;
+
+},{}],3:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Rechteck {
     constructor(a, b) {
         this.a = a;
@@ -39,7 +57,7 @@ function start() {
 }
 exports.default = start;
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function changeHtml() {
@@ -56,12 +74,13 @@ function changeStyle() {
 }
 exports.changeStyle = changeStyle;
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const prismjs_1 = require("prismjs");
 const polymorphism_1 = require("./class/polymorphism");
 const constructor_1 = require("./class/constructor");
+const functions_1 = require("./class/functions");
 const manipulation_1 = require("./dom/manipulation");
 class Main {
     constructor() {
@@ -119,13 +138,16 @@ class Main {
             case "dom-style":
                 manipulation_1.changeStyle();
                 break;
+            case "func":
+                new functions_1.default();
+                break;
             default: console.error("Can´t find Function!");
         }
     }
 }
 new Main();
 
-},{"./class/constructor":1,"./class/polymorphism":2,"./dom/manipulation":3,"prismjs":5}],5:[function(require,module,exports){
+},{"./class/constructor":1,"./class/functions":2,"./class/polymorphism":3,"./dom/manipulation":4,"prismjs":6}],6:[function(require,module,exports){
 (function (global){
 
 /* **********************************************
@@ -948,4 +970,4 @@ Prism.languages.js = Prism.languages.javascript;
 })();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[4]);
+},{}]},{},[5]);
