@@ -42,9 +42,27 @@ exports.default = start;
 },{}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+function changeHtml() {
+    let el = document.getElementById("demo-container");
+    el.innerHTML = "<p>Ich bin normal. <b>Ich bin fett gedruckt.</b></p>";
+    console.log("Html: ", el.innerHTML);
+    console.log("Text: ", el.innerText);
+}
+exports.changeHtml = changeHtml;
+function changeStyle() {
+    let el = document.getElementById("demo-container");
+    changeHtml(); // den Container füllen.
+    el.style.backgroundColor = "#6495ED";
+}
+exports.changeStyle = changeStyle;
+
+},{}],4:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const prismjs_1 = require("prismjs");
 const polymorphism_1 = require("./class/polymorphism");
 const constructor_1 = require("./class/constructor");
+const manipulation_1 = require("./dom/manipulation");
 class Main {
     constructor() {
         this.handleBtnClick = (event) => {
@@ -53,13 +71,22 @@ class Main {
             file.then((code) => {
                 let html = prismjs_1.highlight(code, prismjs_1.languages.javascript);
                 this.container.innerHTML = html;
-                this.runFunction(el.dataset.func);
+                setTimeout(() => {
+                    this.runFunction(el.dataset.func);
+                }, 100);
             })
                 .catch((reason) => {
                 console.error("File Error:", reason);
             });
         };
         this.container = document.getElementById("code-container");
+        this.bspContainer = document.getElementById("demo-container");
+        this.reset = document.getElementById("btn-reset");
+        this.reset.addEventListener("click", () => {
+            this.bspContainer.innerHTML = "";
+            this.bspContainer.removeAttribute("style");
+            this.container.innerHTML = "";
+        }, false);
         let btns = document.getElementsByClassName("btn-demo");
         for (let i = 0; i < btns.length; i++) {
             btns[i].addEventListener("click", this.handleBtnClick, false);
@@ -86,13 +113,19 @@ class Main {
             case "constructor":
                 new constructor_1.default();
                 break;
+            case "dom-mani":
+                manipulation_1.changeHtml();
+                break;
+            case "dom-style":
+                manipulation_1.changeStyle();
+                break;
             default: console.error("Can´t find Function!");
         }
     }
 }
 new Main();
 
-},{"./class/constructor":1,"./class/polymorphism":2,"prismjs":4}],4:[function(require,module,exports){
+},{"./class/constructor":1,"./class/polymorphism":2,"./dom/manipulation":3,"prismjs":5}],5:[function(require,module,exports){
 (function (global){
 
 /* **********************************************
@@ -915,4 +948,4 @@ Prism.languages.js = Prism.languages.javascript;
 })();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[3]);
+},{}]},{},[4]);

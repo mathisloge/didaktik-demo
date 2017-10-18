@@ -44,10 +44,10 @@
                 <a href="javascript:void(0)">DOM-Interaktion</a>
                 <ul class="nav">
                     <li class="nav-item">
-                        <a href="javascript:void(0)">Auslesen</a>
+                        <a href="javascript:void(0)" class="btn-demo" data-file="dom/manipulation.js" data-func="dom-mani">Manipulation</a>
                     </li>
                     <li class="nav-item">
-                        <a href="javascript:void(0)">Manipulation</a>
+                        <a href="javascript:void(0)" class="btn-demo" data-file="dom/manipulation.js" data-func="dom-style">Style-Manipulation</a>
                     </li>
                 </ul>
             </li>
@@ -59,7 +59,8 @@
             </li>
         </ul>
         <div class="divider"></div>
-        <button class="btn btn-primary btn-lg d-invisible" id="btn-run">Run</button>
+        <button class="btn btn-lg" id="btn-reset">Reset</button>
+        <div id="demo-container"></div>
         <pre>
             <code class="language-javascript" id="code-container"></code>
         </pre>
