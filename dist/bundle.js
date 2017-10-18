@@ -82,6 +82,7 @@ const polymorphism_1 = require("./class/polymorphism");
 const constructor_1 = require("./class/constructor");
 const functions_1 = require("./class/functions");
 const manipulation_1 = require("./dom/manipulation");
+const generic_1 = require("./ts/generic");
 class Main {
     constructor() {
         this.handleBtnClick = (event) => {
@@ -114,8 +115,8 @@ class Main {
     readFile(file) {
         return new Promise((resolve, reject) => {
             var rawFile = new XMLHttpRequest();
-            rawFile.open("GET", file, false);
-            rawFile.onreadystatechange = function () {
+            rawFile.open("GET", file, true);
+            rawFile.onload = () => {
                 if (rawFile.readyState == 4 && (rawFile.status == 200 || rawFile.status == 0))
                     resolve(rawFile.responseText);
                 else
@@ -141,13 +142,50 @@ class Main {
             case "func":
                 new functions_1.default();
                 break;
+            case "ts-generic-ts":
+                generic_1.default();
+                break;
             default: console.error("Can´t find Function!");
         }
     }
 }
 new Main();
 
-},{"./class/constructor":1,"./class/functions":2,"./class/polymorphism":3,"./dom/manipulation":4,"prismjs":6}],6:[function(require,module,exports){
+},{"./class/constructor":1,"./class/functions":2,"./class/polymorphism":3,"./dom/manipulation":4,"./ts/generic":6,"prismjs":7}],6:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function start() {
+    let string = new GenericNumber();
+    string.nullValue = "";
+    string.add = (x, y) => { return x + y; };
+    let number = new GenericNumber();
+    number.nullValue = 0;
+    number.add = (x, y) => { return x + y; };
+    let genClass = new GenericNumber();
+    let nullValue = new Base();
+    nullValue.number = 0;
+    genClass.nullValue = nullValue;
+    genClass.add = (x, y) => {
+        let newBase = new Base();
+        newBase.number = x.number + y.number;
+        console.log("Base X: ", x.number, " Base Y: ", y.number);
+        return newBase;
+    };
+    console.log("Ergebnis String: ", string.add("abc", "def"));
+    console.log("Ergebnis Number: ", number.add(number.nullValue, 6));
+    console.log("Ergebnis Class null: ", genClass.add(genClass.nullValue, new Base()));
+    console.log("Ergebnis Class: ", genClass.add(new Base(), new Base()));
+}
+exports.default = start;
+class GenericNumber {
+}
+class Base {
+    constructor() {
+        this.number = Math.floor(Math.random() * 20);
+    }
+}
+
+},{}],7:[function(require,module,exports){
 (function (global){
 
 /* **********************************************

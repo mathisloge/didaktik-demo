@@ -5,6 +5,7 @@ const polymorphism_1 = require("./class/polymorphism");
 const constructor_1 = require("./class/constructor");
 const functions_1 = require("./class/functions");
 const manipulation_1 = require("./dom/manipulation");
+const generic_1 = require("./ts/generic");
 class Main {
     constructor() {
         this.handleBtnClick = (event) => {
@@ -37,8 +38,8 @@ class Main {
     readFile(file) {
         return new Promise((resolve, reject) => {
             var rawFile = new XMLHttpRequest();
-            rawFile.open("GET", file, false);
-            rawFile.onreadystatechange = function () {
+            rawFile.open("GET", file, true);
+            rawFile.onload = () => {
                 if (rawFile.readyState == 4 && (rawFile.status == 200 || rawFile.status == 0))
                     resolve(rawFile.responseText);
                 else
@@ -63,6 +64,9 @@ class Main {
                 break;
             case "func":
                 new functions_1.default();
+                break;
+            case "ts-generic-ts":
+                generic_1.default();
                 break;
             default: console.error("Can´t find Function!");
         }

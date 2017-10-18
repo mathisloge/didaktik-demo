@@ -4,6 +4,7 @@ import poly from './class/polymorphism';
 import Const from './class/constructor';
 import Func from './class/functions';
 import { changeHtml, changeStyle} from './dom/manipulation';
+import generic from './ts/generic';
 
 class Main {
     container:HTMLDivElement;
@@ -47,8 +48,8 @@ class Main {
     {
         return new Promise<string>((resolve, reject)=>{
             var rawFile = new XMLHttpRequest();
-            rawFile.open("GET", file, false);
-            rawFile.onreadystatechange = function ()
+            rawFile.open("GET", file, true);
+            rawFile.onload = () =>
             {
                 if(rawFile.readyState == 4 && (rawFile.status == 200 || rawFile.status == 0))
                     resolve(rawFile.responseText);
@@ -66,6 +67,7 @@ class Main {
             case "dom-mani": changeHtml(); break;
             case "dom-style": changeStyle(); break;
             case "func": new Func(); break;
+            case "ts-generic-ts": generic(); break;
             default: console.error("Can´t find Function!");
         }
     }
