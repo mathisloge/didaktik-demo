@@ -13,10 +13,13 @@ class Main {
     container:HTMLDivElement;
     bspContainer:HTMLDivElement;
     reset:HTMLButtonElement;
+    run: HTMLButtonElement;
+    currFunc:string;
     constructor() {
         this.container = <HTMLDivElement>document.getElementById("code-container");
         this.bspContainer = <HTMLDivElement>document.getElementById("demo-container");
         this.reset = <HTMLButtonElement>document.getElementById("btn-reset");
+        this.run = <HTMLButtonElement>document.getElementById("btn-run");
 
         this.reset.addEventListener("click", ()=>{
             this.bspContainer.innerHTML = "";
@@ -29,6 +32,8 @@ class Main {
         for(let i = 0; i < btns.length; i++){
             btns[i].addEventListener("click", this.handleBtnClick, false);
         }
+
+        this.run.addEventListener("click", () => this.runFunction(this.currFunc));
     }
 
     handleBtnClick = (event:Event) => {
@@ -39,7 +44,7 @@ class Main {
             let html = highlight(code, languages.javascript);
             this.container.innerHTML = html;
             setTimeout(()=>{
-                this.runFunction(el.dataset.func);
+                this.currFunc = el.dataset.func;
             },100);
         })
         .catch( (reason) => {

@@ -179,7 +179,7 @@ class Main {
                 let html = prismjs_1.highlight(code, prismjs_1.languages.javascript);
                 this.container.innerHTML = html;
                 setTimeout(() => {
-                    this.runFunction(el.dataset.func);
+                    this.currFunc = el.dataset.func;
                 }, 100);
             })
                 .catch((reason) => {
@@ -189,6 +189,7 @@ class Main {
         this.container = document.getElementById("code-container");
         this.bspContainer = document.getElementById("demo-container");
         this.reset = document.getElementById("btn-reset");
+        this.run = document.getElementById("btn-run");
         this.reset.addEventListener("click", () => {
             this.bspContainer.innerHTML = "";
             this.bspContainer.removeAttribute("style");
@@ -198,6 +199,7 @@ class Main {
         for (let i = 0; i < btns.length; i++) {
             btns[i].addEventListener("click", this.handleBtnClick, false);
         }
+        this.run.addEventListener("click", () => this.runFunction(this.currFunc));
     }
     readFile(file) {
         return new Promise((resolve, reject) => {
