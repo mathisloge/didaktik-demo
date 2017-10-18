@@ -3,13 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 function start() {
     let string = new GenericNumber();
     string.nullValue = "";
-    string.add = (x, y) => { return x + y; };
+    string.add = (x, y) => x + y;
     let number = new GenericNumber();
     number.nullValue = 0;
-    number.add = (x, y) => { return x + y; };
-    let genClass = new GenericNumber();
+    number.add = (x, y) => x + y;
     let nullValue = new Base();
     nullValue.number = 0;
+    let genClass = new GenericNumber();
     genClass.nullValue = nullValue;
     genClass.add = (x, y) => {
         let newBase = new Base();

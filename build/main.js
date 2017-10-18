@@ -17,6 +17,7 @@ class Main {
             file.then((code) => {
                 let html = prismjs_1.highlight(code, prismjs_1.languages.javascript);
                 this.container.innerHTML = html;
+                this.smoothScroll(this.container);
                 setTimeout(() => {
                     this.currFunc = el.dataset.func;
                 }, 100);
@@ -24,6 +25,30 @@ class Main {
                 .catch((reason) => {
                 console.error("File Error:", reason);
             });
+        };
+        this.smoothScroll = (target) => {
+            var scrollContainer = target;
+            do {
+                scrollContainer = scrollContainer.parentNode;
+                if (!scrollContainer)
+                    return;
+                scrollContainer.scrollTop += 1;
+            } while (scrollContainer.scrollTop == 0);
+            var targetY = 0;
+            do {
+                if (target == scrollContainer)
+                    break;
+                targetY += target.offsetTop;
+            } while (target = target.offsetParent);
+            let scroll = (c, a, b, i) => {
+                i++;
+                if (i > 30)
+                    return;
+                c.scrollTop = a + (b - a) / 30 * i;
+                setTimeout(function () { scroll(c, a, b, i); }, 10);
+            };
+            // start scrolling
+            scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
         };
         this.container = document.getElementById("code-container");
         this.bspContainer = document.getElementById("demo-container");

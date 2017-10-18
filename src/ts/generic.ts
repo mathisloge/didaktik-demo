@@ -1,16 +1,18 @@
 export default function start(){
     let string = new GenericNumber<string>();
     string.nullValue = "";
-    string.add = (x,y) => {return x + y };
+    string.add = (x,y) => x + y;
 
     let number = new GenericNumber<number>();
     number.nullValue = 0;
-    number.add = (x, y) => { return x + y };
+    number.add = (x, y) => x + y;
 
 
-    let genClass = new GenericNumber<Base>();
+    
     let nullValue = new Base();
     nullValue.number = 0;
+    
+    let genClass = new GenericNumber<Base>();
     genClass.nullValue = nullValue;
     genClass.add = (x, y) => {
         let newBase = new Base();
